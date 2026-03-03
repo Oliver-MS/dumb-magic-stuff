@@ -1,3 +1,4 @@
+import argparse
 
 # Returns the number of precursor golems and non-precursor golems 
 # after casting a copy spell, including the originals.
@@ -11,8 +12,18 @@ def copy_precursor_golem(precursors: int, golems: int, copies: int, precursor_tr
         return (precursors, golems + 1 + copies)
     else:
         return copy_precursor_golem(precursors + new_precursors, golems + new_golems, copies, precursor_triggers - 1)
+    
 
-first_rite_precursors, first_rite_golems = copy_precursor_golem(1,1,5,1)
-print(first_rite_precursors, first_rite_golems)
-second_rite_precursors, second_rite_golems = copy_precursor_golem(6, 21, 5, 6)
-print(second_rite_precursors, second_rite_golems)
+def main():
+    parser = argparse.ArgumentParser(description="Calculator for Copying Precursor Golems")
+    parser.add_argument("precursors", type=int)
+    parser.add_argument("golems", type=int)
+    parser.add_argument("copies", type=int)
+    parser.add_argument("triggers", type=int)
+
+    args = parser.parse_args()
+    precursors, golems = copy_precursor_golem(args.precursors, args.golems, args.copies, args.triggers)
+    print(f"You will now have {precursors} Precursor Golems and {golems} golem tokens/other golems.")
+
+if __name__ == "__main__":
+    main()
