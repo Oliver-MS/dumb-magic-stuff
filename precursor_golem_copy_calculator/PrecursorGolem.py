@@ -17,7 +17,7 @@ def copy_precursor_golem(precursors: int, golems: int, copies: int, precursor_tr
 def main():
     parser = argparse.ArgumentParser(description="Calculator for Copying Precursor Golems")
     parser.add_argument("precursors", type=int)
-    parser.add_argument("golems", type=int)
+    parser.add_argument("golems", type=int, help="Do not include the original target of the copy spell in this count.")
     parser.add_argument("copies", type=int)
     parser.add_argument("triggers", type=int)
 
