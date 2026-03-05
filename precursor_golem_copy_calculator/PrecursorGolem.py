@@ -5,13 +5,12 @@ import argparse
 
 # DO NOT INCLUDE THE ORIGINAL TARGET OF THE COPY SPELL IN THE PARAMETER COUNT
 def copy_precursor_golem(precursors: int, golems: int, copies: int, precursor_triggers: int) -> tuple[int, int]:
-    new_precursors = precursors * copies
-    new_golems = (new_precursors * 2) + (copies * golems)
     if precursor_triggers == 0:
         # Add back in the original (assumed non-precursor) golem + copies from the original spell
         return (precursors, golems + 1 + copies)
-    else:
-        return copy_precursor_golem(precursors + new_precursors, golems + new_golems, copies, precursor_triggers - 1)
+    new_precursors = precursors * copies
+    new_golems = (new_precursors * 2) + (copies * golems)
+    return copy_precursor_golem(precursors + new_precursors, golems + new_golems, copies, precursor_triggers - 1)
     
 
 def main():
